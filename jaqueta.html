@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaqueta Corta-Vento Seleção</title>
+    <style>
+        /* --- ESTILO GLOBAL (mesma identidade visual da Loja.html) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            padding-bottom: 60px;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-style: italic;
+            text-decoration: none;
+            color: #000;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.85rem;
+            margin-left: 20px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* --- LINK VOLTAR --- */
+        .voltar-loja {
+            display: inline-block;
+            margin: 25px 40px 0;
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .voltar-loja:hover {
+            color: #000;
+        }
+
+        /* --- LAYOUT PRINCIPAL DA PÁGINA DE PRODUTO --- */
+        .conteudo {
+            max-width: 1400px;
+            margin: 20px auto 40px;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+        }
+
+        /* --- FICHA DO PRODUTO --- */
+        .produto-detalhe {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .galeria-foto {
+            width: 100%;
+            height: 480px;
+            background-color: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .galeria-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-produto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-produto h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .info-produto .preco {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .info-produto h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .info-produto p {
+            font-size: 0.85rem;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .info-produto ul {
+            list-style: none;
+            font-size: 0.85rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .info-produto ul li::before {
+            content: "• ";
+            font-weight: bold;
+        }
+
+        .btn-comprar-detalhe {
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 30px;
+        }
+
+        .btn-comprar-detalhe:hover {
+            background-color: #333333;
+        }
+
+        /* --- SEÇÃO DO CARRINHO (idêntica à Loja.html) --- */
+        .carrinho-lateral {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+
+        .carrinho-titulo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .lista-carrinho {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .item-carrinho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+        }
+
+        .item-detalhes {
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+        }
+
+        .btn-remover {
+            background: none;
+            border: none;
+            color: #ff0000;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .carrinho-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1rem;
+            border-top: 2px solid #000;
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .carrinho-vazio {
+            color: #999;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            background-color: #25d366;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: none;
+        }
+
+        .btn-finalizar:hover {
+            background-color: #1ebd59;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .conteudo {
+                grid-template-columns: 1fr;
+            }
+            .produto-detalhe {
+                grid-template-columns: 1fr;
+            }
+            .carrinho-lateral {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="Loja.html" class="logo">BRASIL</a>
+        <nav>
+            <a href="Loja.html">Camisas</a>
+        </nav>
+    </header>
+
+    <a href="Loja.html" class="voltar-loja">← Voltar para a loja</a>
+
+    <div class="conteudo">
+
+        <main class="produto-detalhe">
+
+            <div class="galeria-foto">
+                <img src="https://down-br.img.susercontent.com/file/394662c553b3bf0a4356b16f9e456a21"
+                     alt="Jaqueta Corta-Vento Seleção">
+            </div>
+
+            <div class="info-produto">
+                <h1>Jaqueta Corta-Vento Seleção</h1>
+                <p class="preco">R$ 499,90</p>
+
+                <h3>Descrição do Produto</h3>
+                <p>
+                    A Jaqueta Corta-Vento Seleção é ideal para os dias mais frios ou
+                    ventosos, mantendo o conforto sem abrir mão do estilo. Com tecido
+                    impermeável e leve, é perfeita para usar antes e depois dos jogos,
+                    ou no dia a dia.
+                </p>
+
+                <h3>Características</h3>
+                <ul>
+                    <li>Tecido corta-vento impermeável.</li>
+                    <li>Escudo da Seleção Brasileira.</li>
+                    <li>Modelagem regular.</li>
+                    <li>Fechamento por zíper frontal.</li>
+                    <li>Ideal para uso esportivo e casual.</li>
+                    <li>Material: 100% Poliéster.</li>
+                </ul>
+
+                <button class="btn-comprar-detalhe" onclick="adicionarItem('Jaqueta Corta-Vento Seleção', 499.90)">Adicionar ao Carrinho</button>
+            </div>
+
+        </main>
+
+        <aside class="carrinho-lateral">
+            <h2 class="carrinho-titulo">Seu Carrinho</h2>
+
+            <ul id="lista-carrinho" class="lista-carrinho">
+                <p id="carrinho-vazio" class="carrinho-vazio">Seu carrinho está vazio</p>
+            </ul>
+
+            <div class="carrinho-total">
+                <span>Total:</span>
+                <span id="valor-total">R$ 0,00</span>
+            </div>
+
+            <button id="btn-finalizar" class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        </aside>
+
+    </div>
+
+    <!-- Mesmo arquivo de carrinho usado na Loja.html -->
+    <script src="carrinho.js"></script>
+</body>
+</html>
